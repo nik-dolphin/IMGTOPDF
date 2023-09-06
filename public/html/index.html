@@ -1,0 +1,48 @@
+<DOCTYPE HTML> 
+  <html>
+    <head>
+    <title>IMG-to-PDF Converter</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Gideon Akinsanmi">
+    <meta name="description" content="Easily convert any set of images to PDFs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    </head>
+    <body>
+    <main>
+      <header>
+      <h1><a href='/'>IMG2PDF</a></h1>
+      </header>
+      <article>
+      <p class='title'>Easily convert your PNG and JPG images </p>
+      <form method='post' action='/upload' enctype='multipart/form-data'>
+        <input id='file-upload' type='file' name='images' accept='.png, .jpg' multiple/>
+        <p><label for='file-upload'>Select files</label></p>
+        <p id='selected-files'><code> </code> </p>
+        <p><input type='submit' value='upload' /></p>
+      </form>
+      </article>
+      <footer>
+      <p><code>copyright &copy; IMG2PDF 2023</code></p>
+      </footer>
+      <script>
+      let fileUpload = document.getElementById('file-upload');
+      let selectedFiles = document.querySelector('#selected-files code');
+      let submitButton = document.querySelector('input[type=submit]');
+        
+      let filenames = ''
+      fileUpload.onchange = function (){
+        filenames = ''
+        for(let file of this.files){
+          filenames += file.name
+          filenames += ','
+        }
+        selectedFiles.parentElement.style.display = 'block'
+        selectedFiles.textContent = filenames
+        submitButton.style.display = 'inline-block';
+      }
+      </script>
+    </main>
+    </body>
+  </html>
